@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,50 +8,98 @@
 <body>
     <article>
         <header>
-            <!-- time permite identificar la fecha en un formato legible por máquinas -->
+            <!--
+                CAMBIO P03-04 (fecha): el texto visible de <time> pasa de inglés
+                ("November 15, 2018") a español ("15 de noviembre de 2018").
+                Justificación semántica: el documento declara lang="es"; el
+                contenido visible debe ser coherente con el idioma declarado
+                (lectores de pantalla). El atributo datetime conserva el valor
+                legible por máquinas (ISO 8601), por lo que no se pierde información.
+                Se OMITE el atributo "pubdate" que usa la solución compartida porque
+                fue eliminado de la especificación HTML5 (obsoleto).
+            -->
             <p>
                 Publicado por MasterChef,
-                <time datetime="2018-11-15">November 15, 2018</time>
+                <time datetime="2018-11-15">15 de noviembre de 2018</time>
             </p>
         </header>
 
-        <h2>Bajito y Despacito</h2>
+        <!--
+            CAMBIO P03-05 (jerarquía): en esta página independiente el título del
+            artículo pasa de <h2> a <h1>. Justificación: es el encabezado principal
+            del documento; empezar en h2 sin un h1 previo rompe el esquema de
+            encabezados que usan los lectores de pantalla para navegar.
+            (En index.html se conserva <h2> porque allí el <h1> es de la receta.)
+        -->
+        <h1>Bajito y Despacito</h1>
 
         <p>
             Esta semana estamos
             <!-- em enfatiza una palabra -->
             <em>extremadamente</em>
             emocionados por presentar una nueva técnica de cocina llamada
-            <!-- dfn identifica un término que se define -->
-            <dfn><i>sous vide</i></dfn>.
-            Con la técnica <dfn><i>sous vide</i></dfn>, tú sumerges un
+            <!--
+                CAMBIO P03-06 (definición): <dfn> se usa SÓLO en la primera aparición
+                del término, que es donde se define. Antes estaba en ambas apariciones.
+                Justificación semántica: <dfn> marca el término que se está definiendo;
+                repetirlo hace creer que se define dos veces. Además se agrega
+                lang="fr" porque "sous vide" es una locución francesa: ayuda a que el
+                lector de pantalla pronuncie bien y a que el navegador no la marque
+                como error ortográfico. <i> se conserva por ser voz/idioma alterno.
+            -->
+            <dfn><i lang="fr">sous vide</i></dfn>.
+            <!-- Segunda aparición: sólo <i lang="fr">, sin <dfn> (ya fue definido). -->
+            Con la técnica <i lang="fr">sous vide</i>, tú sumerges un
             recipiente (generalmente de plástico sellado al vacío) en un
             baño de agua que precisamente se adapta a la temperatura
             requerida para que la comida sea cocinada. En este programa,
+            <!-- cite marca el título de una obra creativa (el programa) -->
             <cite>Cocina para Geeks</cite>, Jaime Potter describe la técnica
             como <q>poción mágica a temperatura ultra baja</q>.
         </p>
 
         <p>
             La siguiente semana, prepararemos
-            <b>Salmon Sous Vide con Eneldo Holandés</b>.
+            <!--
+                DECISIÓN P03-07 (se mantiene <b>): el nombre del platillo se marca con
+                <b> y no con <strong> porque es un nombre de producto que se destaca
+                visualmente, sin urgencia ni importancia especial (criterio de la
+                propia solución). Se corrige además la ortografía: "Salmón" lleva tilde.
+            -->
+            <b>Salmón Sous Vide con Eneldo Holandés</b>.
             Para asistir al programa, contáctanos antes del 30 de noviembre.
         </p>
 
-        <p>
-            registro@masterchef.com<br>
-            <!-- br inserta un salto de línea -->
-            552-336-1800
-        </p>
+        <!--
+            CAMBIO P03-08 (contacto): el párrafo con correo y teléfono se reemplaza
+            por <address>, con enlaces mailto: y tel:.
+            Justificación semántica: <address> está definido para la información de
+            contacto del autor del artículo más cercano; un <p> sólo indica "texto".
+            Los enlaces hacen que los datos sean accionables (abrir correo / llamar).
+            <br> se conserva porque aquí el salto de línea es parte del contenido
+            (dos datos de contacto), no un recurso de espaciado.
+        -->
+        <address>
+            <a href="mailto:registro@masterchef.com">registro@masterchef.com</a><br>
+            <a href="tel:+525523361800">552-336-1800</a>
+        </address>
 
         <p>
             <!-- small representa una nota secundaria o letra pequeña -->
             <small>
+                <!--
+                    CAMBIO P03-09 (redacción): "Evítalo si se está embarazada o se
+                    tienen problemas" se corrige a "Evítalo si estás embarazada o
+                    tienes problemas". Justificación: la concordancia era incorrecta;
+                    en una advertencia de salud la claridad del texto es parte del
+                    contenido semántico.
+                -->
                 Advertencia: El salmón cocinado a la Sous vide no está
-                pasteurizado. Evítalo si se está embarazada o se tienen
+                pasteurizado. Evítalo si estás embarazada o tienes
                 problemas de alergia e inmunidad.
             </small>
         </p>
     </article>
 </body>
 </html>
+
